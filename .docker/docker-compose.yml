@@ -12,4 +12,4 @@ services:
                         - "8080:8080"
                 stdin_open: true
                 tty: true
-                command: /bin/bash -c "pip install -r /tfproject/.require/requirements.txt && clear && bash && neofetch"
+                command: /bin/bash -c "pip install -r /tfproject/.require/requirements.txt && pip install -e . && clear && bash && neofetch"
