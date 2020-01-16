@@ -1,3 +1,9 @@
+## Untrack all folder starts with _
+
+_*/
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

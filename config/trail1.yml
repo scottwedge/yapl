@@ -1,0 +1,6 @@
+EXPERIMENT:
+  NAME: "tfprojectv2" 
+  TRAIL_NUMBER: 1
+
+OPTIMIZER:
+  LR: 0.001
