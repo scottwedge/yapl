@@ -1,0 +1,15 @@
+version: "2.3"
+
+services:
+        tensorflow_env:
+                build: .
+                image: tensorflow_env
+                volumes:
+                        - ..:/tfproject
+                container_name: tensorflow_container
+                ports:
+                        - "6006:6006"
+                        - "8080:8080"
+                stdin_open: true
+                tty: true
+                command: /bin/bash -c "pip install -r /tfproject/.require/requirements.txt && clean && neofetch"
