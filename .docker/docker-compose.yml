@@ -1,7 +1,7 @@
 version: "2.3"
 
 services:
-        tensorflow_env:
+        tf_service:
                 build: .
                 image: tf_image
                 volumes:
@@ -12,4 +12,4 @@ services:
                         - "8080:8080"
                 stdin_open: true
                 tty: true
-                command: /bin/bash -c "pip install -r /tfproject/.require/requirements.txt && clear && neofetch"
+                command: /bin/bash -c "pip install -r /tfproject/.require/requirements.txt && clear && bash && neofetch"
