@@ -1,6 +1,5 @@
 from setuptools import setup
 
-
 setup(
     name="tfproject",
     version="1.0.0",
