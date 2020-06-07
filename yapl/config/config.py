@@ -1,6 +1,6 @@
 import yaml
 
-class Config:
+class ConfigFromYAML:
 
     def __init__(self, FILE_LOC):
         self.FILE = FILE_LOC
