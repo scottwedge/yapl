@@ -14,9 +14,6 @@ setup(
     description="yet another python library",
     url="https://github.com/orionpax00/yapl",
     license="APACHE",
-    install_requires=[            # I get to this in a second
-        'yacs==0.1.6',
-    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
