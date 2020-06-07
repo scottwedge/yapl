@@ -1,34 +1,36 @@
-# TFproject :  A simple Tensorflow template repo from Data Science And Deep Learning Experiments
+# yapl : Yet Another Python Library
+
+> Collection of frequently used python function for Data Analysis and Machine Learning
 
 ## Table of Contents
 
 * [Getting Started](#getting-started)
 
-**Note** : For exhuastive DS environment setup checkout [https://orionpax00.github.io/blogs/ds/work_environment.html](https://orionpax00.github.io/blogs/ds/work_environment.html)
+**Note** : For exhuastive environment setup checkout [https://orionpax00.github.io/blogs/ds/work_environment.html](https://orionpax00.github.io/blogs/ds/work_environment.html)
+
 
 ## Getting Started
-
+```bash
+pip install -i https://test.pypi.org/simple/ yapl
+```
 ### Prerequisites
 
-* Python 3.7 or above
-* Docker & docker-compose
+* tensorflow>=2.0.0
+* pytorch
 
-### Installation
 
-#### Docker
+## For Collaborators
 
-```sh
-git clone https://github.com/orionpax00/tfproject.git
-cd docker-compose -f .docker/docker-compose.yml up -d
-docker exec -it tf_container bash
-```
-
-#### Virtualenv
-
-```sh
-git clone https://github.com/orionpax00/tfproject.git
-virtualenv -p python3 env
-source ./env/bin/activate
-pip install -r .require/requirements.txt
+```bash
+//fork the project
+git clone https://github.com/<YOUR-USERNAME>/yapl.git
+cd yapl
 pip install -e .
+
+//make changes
+git checkout -b <your-awesome-feature>
+git add . <file>
+git push origin <your-awesome-feature>
+
+//make PR
 ```
