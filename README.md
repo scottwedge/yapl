@@ -11,7 +11,7 @@
 
 ## Getting Started
 ```bash
-pip install -i https://test.pypi.org/simple/ yapl
+pip install yapl
 ```
 ### Prerequisites
 
