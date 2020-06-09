@@ -1,2 +1,2 @@
 from .configloader import ConfigFromYAML
-from .testconfig import TestConfig
+from .config import Config

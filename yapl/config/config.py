@@ -1,11 +1,11 @@
 import yaml
 
-class TestConfig:
+class Config:
     '''
         Extend this Base class to avoid Re-writing most of the things
 
         example:
-            class config(TestConfig):
+            class config(Config):
                 def __init__(self):
                     super().__init__()
                     self.EXPERIMENT = {
@@ -21,10 +21,14 @@ class TestConfig:
     '''
 
     def __init__(self):
-        self.OPTIMIZER = 0.0001
+        self.DO_FINETUNE = True
+        
+        self.OPTIMIZER_RATE = 0.0001
         self.DEVICE = 'cuda'
 
-        self.BATCHSIZE = 32
+        self.BATCH_SIZE = 32
+        self.BUFFER_SIZE = 100
+        self.EPOCHES = 5 
 
     def dumpconfig(self, location):
         with open(location, 'w') as dumpfile:
