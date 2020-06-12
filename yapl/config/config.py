@@ -21,14 +21,34 @@ class Config:
     '''
 
     def __init__(self):
+        self.GCS_DS_PATH = KaggleDatasets().get_gcs_path('<dataset-name>')
+        self.TRAIN_CSV = '../input/<dataset-name>/train.csv'
+        self.TEST_CSV = '../input/<dataset-name>/test.csv'
+        self.TRAIN_FILES = tf.io.gfile.glob(GCS_DS_PATH + '<files>*')
+        self.TEST_FILES = tf.io.gfile.glob(GCS_DS_PATH + '<files>')
+        self.VALIDATION_CSV = ""
+        
+        self.TOTAL_TRAIN_IMG = 0
+        self.TOTAL_TEST_IMG = 0
+        
+        self.IMG_SIZE = [1024, 1024]
+        self.IMG_RESHAPE = [512,512]
+        self.IMG_SHAPE = (512, 512, 3)
         self.DO_FINETUNE = True
         
-        self.OPTIMIZER_RATE = 0.0001
-        self.DEVICE = 'cuda'
-
-        self.BATCH_SIZE = 32
+        self.BATCH_SIZE = 8
         self.BUFFER_SIZE = 100
-        self.EPOCHES = 5 
+        self.EPOCHES = 10 
+        
+        self.LOSS = tf.keras.losses.BinaryCrossentropy()
+        self.OPTIMIZER = tf.keras.optimizers.Adam(learning_rate=0.01)
+        self.ACCURACY = ['accuracy']
+        
+        self.STRATEGY = None
+        
+        self.LOG_DIR = './log'
+        self.CHECKPOINT_DIR = './log/checkpoint/cp.cpkt'
+
 
     def dumpconfig(self, location):
         with open(location, 'w') as dumpfile:

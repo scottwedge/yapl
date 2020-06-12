@@ -11,12 +11,46 @@ class TfEngine:
         self.config = config
 
     def loopengine(self, istraining = True):
+        history = []
+        for epoch in range(self.config.EPOCHES):
+            epoch_loss_avg = tf.keras.metrics.Mean()
+            epoch_accuracy_avg = tf.keras.metrics.BinaryAccuracy()
 
-        pass
+            for it, (data_batch, label_batch) in enumerate(dataset):
+
+                if it%50 == 0:
+                    print(it)
+
+                with tf.GradientTape() as tape:
+                    output = model(data_batch, training=True)
+                    losses = self.config.LOSS(y_true = label_batch, y_pred=output)
+                    grads = tape.gradient(losses, model.trainable_variables)
+                    self.config.OPTIMIZER.apply_gradients(zip(grads, model.trainable_variables))
+                    epoch_loss_avg.update_state(losses)
+                    epoch_accuracy_avg.update_state(label_batch, tf.squeeze(output))
+
+            print('Loss: {} | Accuracy: {}'.format(epoch_loss_avg.result(), epoch_accuracy_avg.result()))
+            history.append((epoch_loss_avg.result(), epoch_accuracy_avg.result()))
+        
+        return history
 
     def fitengine(self, istraining = True):
+        model.compile(
+            optimizer=self.config.OPTIMIZER, 
+            loss=self.config.LOSS, 
+            metrics=self.config.ACCURACY
+        )
+        history = model.fit(
+            dataset, 
+            epochs=self.config.EPOCHES, 
+            steps_per_epoch=(self.config.TOTAL_TRAIN_IMG//self.config.BATCH_SIZE),
+    #         callbacks=[
+    #             Callbacks().checkpoint_logger(),
+    #             Callbacks().tesorboard_logger()
+    #         ]
+        )
 
-        pass
+        return history
 
 
 class TorchEngine:
