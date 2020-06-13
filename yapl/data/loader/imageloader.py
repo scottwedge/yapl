@@ -4,7 +4,6 @@ import torch
 from PIL import Image
 
 class SimpleLoader:
-
     def __init__(self, images, targets):
         self.images = images
         self.targets = targets

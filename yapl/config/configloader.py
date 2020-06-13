@@ -14,7 +14,6 @@ class ConfigFromYAML:
                 raise errors.InvalidPackageListFormat("Invalid YAML in package list: %s" % str(ex))
     
     def dumpconfig(self, diff=True):
-        
         if diff:
             suffix = "_mod." + self.FILE.split('.')[-1]
             file_loc = self.FILE[:-4] + suffix
@@ -25,3 +24,6 @@ class ConfigFromYAML:
             yaml.dump(self.__dict__, dumpfile)
 
         return "you file has successfully saved"
+    
+    def make_global(self):
+        yapl.config = self

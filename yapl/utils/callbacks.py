@@ -1,4 +1,4 @@
-import tesorflow as tf
+import tensorflow as tf
 
 class TFCallbacks:
     def __init__(self):

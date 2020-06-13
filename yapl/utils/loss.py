@@ -1,5 +1,3 @@
-import torch
-
 class AverageLossTorch:
     def __init__(self):
         self.val = 0
