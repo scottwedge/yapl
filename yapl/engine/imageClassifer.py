@@ -7,7 +7,7 @@ from yapl.utils.accuracy import AverageBinaryAccuracyTorch
 from yapl.utils.loss import AverageLossTorch
 
 class Engine:
-    def __init_(self, model, dataloader, config):
+    def __init_(self, model, dataloader):
         self.model = model
         self.dataloader = dataloader
         self.config = yapl.config
@@ -21,7 +21,7 @@ class Engine:
 
                 for it, (data_batch, label_batch) in enumerate(dataloader):
                     with tf.GradientTape() as tape:
-                        output = model(data_batch, training=True)
+                        output = self.model(data_batch, training=True)
                         losses = self.config.LOSS(y_true = label_batch, y_pred=output)
                         grads = tape.gradient(losses, model.trainable_variables)
                         self.config.OPTIMIZER.apply_gradients(zip(grads, model.trainable_variables))
@@ -35,7 +35,7 @@ class Engine:
 
         elif yapl.backend == 'torch':
             if istraining:
-                model.train()
+                self.model.train()
                 loss_avg = AverageLossTorch()
 
                 for (data_batch, label_batch) in dataloader:
@@ -44,7 +44,7 @@ class Engine:
                     label_batch = label_batch.to(self.config.DEVICE, dtype=torch.float)
                     
                     self.config.OPTIMIZER.zero_grad()
-                    output = model(data_batch)
+                    output = self.model(data_batch)
                     
                     losses = self.config.LOSS(output, label_batch.unsqueeze(1))
                     losses.backward()
@@ -62,12 +62,12 @@ class Engine:
 
     def fitengine(self, istraining = True):
         if yapl.backend == 'tf':
-            model.compile(
+            self.model.compile(
                 optimizer=self.config.OPTIMIZER, 
                 loss=self.config.LOSS, 
                 metrics=self.config.ACCURACY
             )
-            history = model.fit(
+            history = self.model.fit(
                 self.dataloader, 
                 epochs=self.config.EPOCHES, 
                 steps_per_epoch=(self.config.TOTAL_TRAIN_IMG//self.config.BATCH_SIZE),
