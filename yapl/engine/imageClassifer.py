@@ -7,7 +7,7 @@ from yapl.utils.accuracy import AverageBinaryAccuracyTorch
 from yapl.utils.loss import AverageLossTorch
 
 class Engine:
-    def __init_(self, model, dataloader):
+    def __init__(self, model, dataloader):
         self.model = model
         self.dataloader = dataloader
         self.config = yapl.config
