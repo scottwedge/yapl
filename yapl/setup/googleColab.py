@@ -47,3 +47,5 @@ def setupTensorboard():
     print("Make sure that a web service is running on localhost:6006 and that it is a valid address.")
     print("TRY TO RUN TENSORBOARD MANUALLY")
     return url_
+
+

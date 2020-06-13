@@ -22,6 +22,7 @@ class Config:
     '''
 
     def __init__(self):
+        EXPERIMENT_NAME = 'example_1'
         # self.GCS_DS_PATH = KaggleDatasets().get_gcs_path('<dataset-name>')
         self.TRAIN_CSV = '../input/<dataset-name>/train.csv'
         self.TEST_CSV = '../input/<dataset-name>/test.csv'
