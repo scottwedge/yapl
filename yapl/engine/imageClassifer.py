@@ -10,7 +10,7 @@ class Engine:
     def __init_(self, model, dataloader, config):
         self.model = model
         self.dataloader = dataloader
-        self.config = config
+        self.config = yapl.config
 
     def loopengine(self, istraining = True):
         if yapl.backend == 'tf':
